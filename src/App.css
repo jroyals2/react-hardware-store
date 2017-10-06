@@ -39,3 +39,9 @@
   min-height: 500px;
   box-shadow: 1px 1px 3px black;
 }
+.cart{
+  border: 1px solid black;
+  width: 35%;
+  min-height: 500px;
+  box-shadow: 1px 1px 3px black;
+}

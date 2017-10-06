@@ -20,7 +20,8 @@ class Shop extends Component {
           description: 'Itsa nail',
           price: 0.12
         }
-      ]
+      ],
+      cartList: []
     }
   }
 
@@ -40,6 +41,18 @@ class Shop extends Component {
     this.setState({isAdmin: !this.state.isAdmin})
   }
 
+  addToCart = (index) => {
+      const newCartList = [...this.state.cartList]
+      newCartList.push(this.state.productList[index])
+      this.setState({cartList: newCartList})
+
+  }
+  deleteProductFromCartList = (index) => {
+    const newCartList = [...this.state.cartList]
+    newCartList.splice(index, 1)
+    this.setState({cartList: newCartList})
+  }
+
   render () {
     return (
       <div >
@@ -51,11 +64,16 @@ class Shop extends Component {
                 productList={this.state.productList}
                 addProductToProductList={this.addProductToProductList}
                 deleteProductFromProductList={this.deleteProductFromProductList}
-              /> : <ShopView
+              /> : <ShopView 
+                addToCart={this.addToCart}
                 productList={this.state.productList}
               />}
           </div>
-          <CartView />
+          <div className="cart">
+            <CartView cartList={this.state.cartList} 
+                deleteProductFromCartList={this.deleteProductFromCartList}
+          />
+          </div>
         </div>
       </div>
     )
