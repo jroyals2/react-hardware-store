@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import Product from './Product'
+import CartProduct from './CartProduct'
+
 
 class CartView extends Component {
   render () {
@@ -10,10 +11,11 @@ class CartView extends Component {
           { this.props.cartList.map((product, index) => {
             return (
               <div key={index}>
-                <Product
+                <CartProduct
                   productName={product.productName}
                   price={product.price}
                   description={product.description}
+                  qty={product.qty}
                 />
                 <button onClick={() => this.props.deleteProductFromCartList(index)}>Delete</button>
               </div>

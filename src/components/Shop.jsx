@@ -43,8 +43,16 @@ class Shop extends Component {
 
   addToCart = (index) => {
       const newCartList = [...this.state.cartList]
-      newCartList.push(this.state.productList[index])
-      this.setState({cartList: newCartList})
+      if(newCartList.includes(this.state.productList[index]) === false){
+            let product = this.state.productList[index]
+            newCartList.push(product)
+            newCartList[newCartList.indexOf(product)]['qty'] = 1 
+      } else {
+          const updateQtyIndex = newCartList.indexOf(this.state.productList[index])
+          newCartList[updateQtyIndex].qty += 1
+      }
+    
+    this.setState({cartList: newCartList})
 
   }
   deleteProductFromCartList = (index) => {
